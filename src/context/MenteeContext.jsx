@@ -1,14 +1,32 @@
-import React, { createContext } from "react";
-import { menteeList } from "../data/data";
+import React, { createContext, useState } from "react";
+import menteesData from "../data/data";
 
 export const MenteeContext = createContext();
 
-const MenteeProvider = ({ children }) => {
+export const MenteeProvider = ({ children }) => {
+  const [mentees, setMentees] = useState(menteesData);
+
+  const addMentee = (newMentee) => {
+    setMentees([...mentees, { ...newMentee, id: mentees.length + 1 }]);
+  };
+
+  const updateMentee = (id, updatedMentee) => {
+    setMentees(
+      mentees.map((mentee) =>
+        mentee.id === id ? { ...mentee, ...updatedMentee } : mentee,
+      ),
+    );
+  };
+
+  const deleteMentee = (id) => {
+    setMentees(mentees.filter((mentee) => mentee.id !== id));
+  };
+
   return (
-    <MenteeContext.Provider value={menteeList}>
+    <MenteeContext.Provider
+      value={{ mentees, addMentee, updateMentee, deleteMentee }}
+    >
       {children}
     </MenteeContext.Provider>
   );
 };
-
-export default MenteeProvider;

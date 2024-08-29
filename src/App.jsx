@@ -1,13 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { MenteeProvider } from "./context/MenteeContext";
 import Child from "./components/Child";
-import MenteeProvider from "./context/MenteeContext";
 
 function App() {
   return (
     <MenteeProvider>
-      <div className="App">
-        <Child />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Child />} />
+        </Routes>
+      </Router>
     </MenteeProvider>
   );
 }
