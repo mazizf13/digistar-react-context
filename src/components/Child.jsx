@@ -10,7 +10,7 @@ const Child = () => {
         Data Mentee Digistar Class
       </h2>
       {menteeData.map((mentee, index) => (
-        <div key={index} style={{ marginBottom: "10px" }}>
+        <div key={index} className="mb-4">
           <p>
             <strong>Nama:</strong> {mentee.nama}
           </p>
