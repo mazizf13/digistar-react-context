@@ -22,14 +22,14 @@ const MenteeTable = ({ onEdit }) => {
           </tr>
         </thead>
         <tbody>
-          {mentees.map((mentee) => (
+          {mentees.map((mentee, index) => (
             <tr key={mentee.id}>
               <td className="py-2 px-4 border">{mentee.nama}</td>
               <td className="py-2 px-4 border">{mentee.kota}</td>
               <td className="py-2 px-4 border">{mentee.hobi}</td>
               <td className="py-2 px-4 border">
                 <button
-                  onClick={() => onEdit(mentee.id)}
+                  onClick={() => onEdit(index)}
                   className="mr-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
                 >
                   Edit

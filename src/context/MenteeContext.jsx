@@ -10,10 +10,10 @@ export const MenteeProvider = ({ children }) => {
     setMentees([...mentees, { ...newMentee, id: mentees.length + 1 }]);
   };
 
-  const updateMentee = (id, updatedMentee) => {
+  const updateMentee = (index, updatedMentee) => {
     setMentees(
-      mentees.map((mentee) =>
-        mentee.id === id ? { ...mentee, ...updatedMentee } : mentee,
+      mentees.map((mentee, idx) =>
+        idx === index ? { ...mentee, ...updatedMentee } : mentee,
       ),
     );
   };
