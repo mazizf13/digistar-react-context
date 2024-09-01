@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { MenteeContext } from "../context/MenteeContext";
+import { useTheme } from "../context/ThemeContext";
 
 const MenteeForm = ({ editIndex, onCancelEdit }) => {
   const { mentees, addMentee, updateMentee } = useContext(MenteeContext);
+  const { isDarkMode } = useTheme();
 
   const [menteeData, setMenteeData] = useState({
     nama: "",
@@ -36,9 +38,15 @@ const MenteeForm = ({ editIndex, onCancelEdit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-[70px] w-[450px] p-4 bg-sky-800 rounded-lg shadow-sm"
+      className={`mt-4 p-4 rounded-lg shadow-sm ${
+        isDarkMode ? "bg-gray-800" : "bg-sky-800"
+      }`}
     >
-      <h3 className="text-xl font-semibold mb-4">
+      <h3
+        className={`text-xl font-semibold mb-4 ${
+          isDarkMode ? "text-white" : "text-white"
+        }`}
+      >
         {editIndex !== null ? "Edit Mentee" : "Add New Mentee"}
       </h3>
       <input
@@ -48,7 +56,11 @@ const MenteeForm = ({ editIndex, onCancelEdit }) => {
         onChange={handleChange}
         placeholder="Nama"
         required
-        className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className={`w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 ${
+          isDarkMode
+            ? "border-gray-600 bg-gray-700 text-white focus:ring-blue-500"
+            : "border-gray-300 bg-white text-black focus:ring-blue-500"
+        }`}
       />
       <input
         type="text"
@@ -57,7 +69,11 @@ const MenteeForm = ({ editIndex, onCancelEdit }) => {
         onChange={handleChange}
         placeholder="Kota"
         required
-        className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className={`w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 ${
+          isDarkMode
+            ? "border-gray-600 bg-gray-700 text-white focus:ring-blue-500"
+            : "border-gray-300 bg-white text-black focus:ring-blue-500"
+        }`}
       />
       <input
         type="text"
@@ -66,11 +82,19 @@ const MenteeForm = ({ editIndex, onCancelEdit }) => {
         onChange={handleChange}
         placeholder="Hobi"
         required
-        className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className={`w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 ${
+          isDarkMode
+            ? "border-gray-600 bg-gray-700 text-white focus:ring-blue-500"
+            : "border-gray-300 bg-white text-black focus:ring-blue-500"
+        }`}
       />
       <button
         type="submit"
-        className="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+        className={`w-full px-4 py-2 rounded transition ${
+          isDarkMode
+            ? "bg-green-600 text-white hover:bg-green-700"
+            : "bg-green-500 text-white hover:bg-green-600"
+        }`}
       >
         {editIndex !== null ? "Update Mentee" : "Add Mentee"}
       </button>
@@ -78,7 +102,11 @@ const MenteeForm = ({ editIndex, onCancelEdit }) => {
         <button
           type="button"
           onClick={onCancelEdit}
-          className="w-full mt-2 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition"
+          className={`w-full mt-2 px-4 py-2 rounded transition ${
+            isDarkMode
+              ? "bg-yellow-600 text-white hover:bg-yellow-700"
+              : "bg-yellow-500 text-white hover:bg-yellow-600"
+          }`}
         >
           Cancel
         </button>
